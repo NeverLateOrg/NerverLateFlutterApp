@@ -1,4 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:never_late_api_refont/views/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../main.dart';
+import '../../views/login_page.dart';
 
 class ConnectionService {
   ConnectionService._privateConstructor();
@@ -18,6 +23,8 @@ class ConnectionService {
     prefs.setString('access_token', accessToken);
     this.accessToken = accessToken;
     isConnected = true;
+    navigatorKey.currentState!.pushReplacement(
+        MaterialPageRoute(builder: (context) => const HomePage()));
   }
 
   Future<void> logout() async {
@@ -25,6 +32,8 @@ class ConnectionService {
     prefs.remove('access_token');
     accessToken = null;
     isConnected = false;
+    navigatorKey.currentState!.pushReplacement(
+        MaterialPageRoute(builder: (context) => const LoginPage()));
   }
 
   Future<bool> isLogged() async {
