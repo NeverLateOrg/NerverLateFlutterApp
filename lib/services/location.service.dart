@@ -1,5 +1,6 @@
 import 'package:never_late_api_refont/models/customLocation.dart';
 import 'package:never_late_api_refont/models/placeLocation.dart';
+import 'package:never_late_api_refont/services/api_services/place.locations.service.dart';
 
 class LocationService {
   LocationService._privateConstructor();
@@ -11,27 +12,17 @@ class LocationService {
     return _instance;
   }
 
-  final List<PlaceLocation> _placeLocations = [
-    PlaceLocation(
-        id: '6456d13104ce784e8997968d',
-        name: 'Eiffel Tower From the secondary iyyama',
-        address: '42 rue du pilon, France 75000'),
-    PlaceLocation(
-        id: '6456d13104ce784e8997968d',
-        name: 'Eiffel Tower 2',
-        address: '42 rue du pilon, France 75000'),
-    PlaceLocation(
-        id: '6456d13104ce784e8997968d',
-        name: 'Eiffel Tower 3',
-        address: '42 rue du pilon, France 75000')
-  ];
+  Future<void> updatePlaces() async {
+    List<PlaceLocation> placeLocation =
+        await PlaceLocationsService().getPlaceLocations();
+    List<CustomLocation> customLocation = [];
+    _placeLocations = placeLocation;
+    _customLocations = customLocation;
+  }
+
+  List<PlaceLocation> _placeLocations = [];
   List<PlaceLocation> get placeLocations => _placeLocations;
 
-  final List<CustomLocation> _customLocations = [
-    CustomLocation(
-        id: '6456d13104ce784e8997968d',
-        name: 'My custom location',
-        location: '12.2423,1.2342'),
-  ];
+  List<CustomLocation> _customLocations = [];
   List<CustomLocation> get customLocations => _customLocations;
 }

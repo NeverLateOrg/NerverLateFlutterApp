@@ -61,7 +61,7 @@ class LocationBox extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppLargeText(
-                        text: 'Eiffel Tower',
+                        text: location.name,
                         size: 17,
                         color: Theme.of(context).colorScheme.primary,
                       ),
@@ -77,7 +77,9 @@ class LocationBox extends StatelessWidget {
                           ),
                           Expanded(
                               child: AppText(
-                            text: '14 Allee Eric Chabeur, 75013 Paris',
+                            text: isPlace()
+                                ? getPlace().address
+                                : getCustomLocation().location,
                             size: 11,
                             color: Theme.of(context).colorScheme.secondary,
                           ))

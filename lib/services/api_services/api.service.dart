@@ -3,8 +3,8 @@ import 'package:never_late_api_refont/services/connection_service/connection.ser
 class ApiService {
   static const String baseUrl = 'http://127.0.0.1:3000';
 
-  Future<String?> get accessToken async {
+  String? get accessToken {
     ConnectionService connectionService = ConnectionService();
-    return await connectionService.getAccessToken();
+    return connectionService.getAccessToken();
   }
 }

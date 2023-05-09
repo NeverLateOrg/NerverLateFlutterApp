@@ -26,10 +26,11 @@ class PlaceLocationImage extends StatelessWidget {
         'Authorization': 'Bearer ${ConnectionService().getAccessToken()}',
       }),
       errorWidget: (BuildContext context, String url, dynamic error) {
-        print(ConnectionService().getAccessToken());
-        print(error);
         // Display a placeholder image if the request fails
-        return Image.asset('assets/images/placeholder.png');
+        return Image.asset(
+          'assets/images/placeholder.png',
+          fit: BoxFit.cover,
+        );
       },
     );
   }
