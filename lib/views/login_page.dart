@@ -6,8 +6,6 @@ import 'package:never_late_api_refont/services/connection_service/connection.ser
 import 'package:never_late_api_refont/validators/email.validator.dart';
 import 'package:never_late_api_refont/validators/password.validator.dart';
 
-import 'home_page.dart';
-
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -66,10 +64,6 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: () async {
                 try {
                   await _login();
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
-                  );
                 } catch (e) {
                   showDialog(
                     context: context,

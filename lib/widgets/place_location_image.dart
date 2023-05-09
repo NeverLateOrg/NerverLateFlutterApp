@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:never_late_api_refont/models/placeLocation.dart';
-import 'package:never_late_api_refont/services/api_services/place.locations.service.dart';
+import 'package:never_late_api_refont/services/api_services/place_locations_api_service.dart';
 import 'package:never_late_api_refont/services/connection_service/connection.service.dart';
 import 'package:never_late_api_refont/utils/cached_managers.dart';
 
@@ -16,8 +16,8 @@ class PlaceLocationImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      imageUrl:
-          PlaceLocationsService().getPlaceLocationsImageUrl(placeLocation.id),
+      imageUrl: PlaceLocationsApiService()
+          .getPlaceLocationsImageUrl(placeLocation.id),
       cacheManager: locationsCacheManager,
       fit: BoxFit.cover,
       width: width,

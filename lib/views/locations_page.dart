@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fuzzy/fuzzy.dart';
 import 'package:never_late_api_refont/models/customLocation.dart';
-import 'package:never_late_api_refont/services/location.service.dart';
+import 'package:never_late_api_refont/services/data_services/place_locations_service.dart';
 import 'package:never_late_api_refont/widgets/filterBar.dart/FilterBar.dart';
 
 import '../models/placeLocation.dart';
+import '../services/data_services/custom_locations_service.dart';
 import '../widgets/app_large_text.dart';
 import '../widgets/locationBox.dart';
 
@@ -18,8 +19,8 @@ class LocationsPage extends StatefulWidget {
 }
 
 class _LocationsPageState extends State<LocationsPage> {
-  List<PlaceLocation> placeLocations = LocationService().placeLocations;
-  List<CustomLocation> customLocations = LocationService().customLocations;
+  late List<PlaceLocation> placeLocations;
+  late List<CustomLocation> customLocations;
   List<dynamic> locations = [];
   List<dynamic> filteredByFuzeLocations = [];
   List<dynamic> finalFilteredLocations = [];
@@ -50,27 +51,30 @@ class _LocationsPageState extends State<LocationsPage> {
         ]));
   }
 
-  @override
-  void initState() {
-    super.initState();
-    placeLocations = LocationService().placeLocations;
-    customLocations = LocationService().customLocations;
+  updateLocations() async {
+    final placeLocationsService = PlaceLocationsService();
+    final customLocationsService = CustomLocationsService();
+    await placeLocationsService.updateRemoteAll();
+    await customLocationsService.updateRemoteAll();
+    setState(() {
+      initValues();
+    });
+  }
 
+  initValues() {
+    placeLocations = PlaceLocationsService().getAll();
+    customLocations = CustomLocationsService().getAll();
     locations = [...placeLocations, ...customLocations];
     filteredByFuzeLocations = locations;
     finalFilteredLocations = filterByType();
-
     setupFuzzy();
+  }
 
-    LocationService().updatePlaces().then((_) {
-      placeLocations = LocationService().placeLocations;
-      customLocations = LocationService().customLocations;
-      locations = [...placeLocations, ...customLocations];
-      filteredByFuzeLocations = locations;
-      finalFilteredLocations = filterByType();
-      setupFuzzy();
-      setState(() {});
-    });
+  @override
+  void initState() {
+    super.initState();
+
+    updateLocations();
   }
 
   @override

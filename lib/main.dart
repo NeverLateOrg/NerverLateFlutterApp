@@ -4,8 +4,10 @@ import 'package:never_late_api_refont/theme/theme_constant.dart';
 import 'package:never_late_api_refont/views/home_page.dart';
 import 'package:never_late_api_refont/views/login_page.dart';
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 void main() {
-  runApp(const Material(child: MyApp()));
+  runApp(Material(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -16,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      navigatorKey: navigatorKey,
       theme: mainTheme,
       home: FutureBuilder(
         future: ConnectionService().isLogged(),
