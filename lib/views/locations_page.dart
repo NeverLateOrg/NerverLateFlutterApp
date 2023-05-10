@@ -73,7 +73,6 @@ class _LocationsPageState extends State<LocationsPage> {
   @override
   void initState() {
     super.initState();
-
     updateLocations();
   }
 
