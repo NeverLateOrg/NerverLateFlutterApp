@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:never_late_api_refont/services/connection_service/connection.service.dart';
 import 'package:never_late_api_refont/theme/theme_constant.dart';
 import 'package:never_late_api_refont/views/home_page.dart';
-import 'package:never_late_api_refont/views/login_page.dart';
+import 'package:never_late_api_refont/views/login_page/login_page.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() {
-  runApp(Material(child: MyApp()));
+  runApp(const Material(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

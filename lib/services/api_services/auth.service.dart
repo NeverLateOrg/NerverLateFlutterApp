@@ -28,8 +28,28 @@ class AuthService extends ApiService {
       return result['access_token'];
     } else if (res.statusCode == 400) {
       throw Exception("Bad request");
-    } else if (res.statusCode == 401) {
-      throw Exception("Invalid credentials");
+    } else {
+      throw Exception("An error occurred while logging in");
+    }
+  }
+
+  Future<String> register(
+      String firstName, String lastName, String email, String password) async {
+    final body = {
+      "firstName": firstName,
+      "lastName": lastName,
+      "email": email,
+      "password": password,
+    };
+    final String url = '${AuthService.authUrl}/register';
+
+    final res = await http.post(Uri.parse(url), body: body);
+
+    if (res.statusCode == 201) {
+      final Map<String, dynamic> result = jsonDecode(res.body);
+      return result['access_token'];
+    } else if (res.statusCode == 400) {
+      throw Exception("Bad request");
     } else {
       throw Exception("An error occurred while logging in");
     }

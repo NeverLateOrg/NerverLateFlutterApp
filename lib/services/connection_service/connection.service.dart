@@ -3,7 +3,7 @@ import 'package:never_late_api_refont/views/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../main.dart';
-import '../../views/login_page.dart';
+import '../../views/login_page/login_page.dart';
 
 class ConnectionService {
   ConnectionService._privateConstructor();
