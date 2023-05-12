@@ -1,5 +1,5 @@
 import 'package:http/http.dart';
-import 'package:never_late_api_refont/services/api_services/httpError.dart';
+import 'package:never_late_api_refont/services/api_services/utils/httpError.dart';
 import 'package:never_late_api_refont/services/connection_service/connection.service.dart';
 
 class ApiService {

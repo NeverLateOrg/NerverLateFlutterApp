@@ -40,6 +40,7 @@ dependencies:
   flutter_cache_manager: ^3.3.0
   fuzzy: ^0.4.0-nullsafety.0
   calendar_view: ^1.0.3
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_test:

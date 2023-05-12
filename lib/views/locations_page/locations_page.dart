@@ -4,10 +4,10 @@ import 'package:never_late_api_refont/models/customLocation.dart';
 import 'package:never_late_api_refont/services/data_services/place_locations_service.dart';
 import 'package:never_late_api_refont/widgets/filterBar.dart/FilterBar.dart';
 
-import '../models/placeLocation.dart';
-import '../services/data_services/custom_locations_service.dart';
-import '../widgets/app_large_text.dart';
-import '../widgets/locationBox.dart';
+import '../../models/placeLocation.dart';
+import '../../services/data_services/custom_locations_service.dart';
+import '../../widgets/app_large_text.dart';
+import '../../widgets/locationBox.dart';
 
 enum PopupMenuChoice { edit, delete }
 
@@ -54,8 +54,8 @@ class _LocationsPageState extends State<LocationsPage> {
   updateLocations() async {
     final placeLocationsService = PlaceLocationsService();
     final customLocationsService = CustomLocationsService();
-    await placeLocationsService.updateRemoteAll();
-    await customLocationsService.updateRemoteAll();
+    await placeLocationsService.syncRemoteAll();
+    await customLocationsService.syncRemoteAll();
     setState(() {
       initValues();
     });
@@ -80,10 +80,11 @@ class _LocationsPageState extends State<LocationsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.tertiary,
           title: AppLargeText(
-        text: 'Locations',
-        color: Theme.of(context).colorScheme.tertiary,
-      )),
+            text: 'Locations',
+            color: Theme.of(context).colorScheme.primary,
+          )),
       body: Container(
         padding: const EdgeInsets.all(20),
         child: Column(

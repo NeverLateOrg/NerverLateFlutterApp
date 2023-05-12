@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:never_late_api_refont/services/manager_services.dart';
 import 'package:never_late_api_refont/views/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -32,6 +33,7 @@ class ConnectionService {
     prefs.remove('access_token');
     accessToken = null;
     isConnected = false;
+    ManagerServices().resetAll();
     navigatorKey.currentState!.pushReplacement(
         MaterialPageRoute(builder: (context) => const LoginPage()));
   }

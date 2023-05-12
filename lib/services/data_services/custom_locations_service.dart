@@ -32,13 +32,13 @@ class CustomLocationsService implements ListDataService<CustomLocation> {
   }
 
   @override
-  Future<void> updateRemoteAll() async {
+  Future<void> syncRemoteAll() async {
     final locations = await _apiService.getCustomLocations();
     _customLocations = locations;
   }
 
   @override
-  Future<void> updateRemoteOne(String id) async {
+  Future<void> syncRemoteOne(String id) async {
     final location = await _apiService.getCustomLocation(id);
     final index = getIndex(id);
     if (index >= 0) {
@@ -52,5 +52,10 @@ class CustomLocationsService implements ListDataService<CustomLocation> {
   int getIndex(String id) {
     final index = _customLocations.indexWhere((element) => element.id == id);
     return index;
+  }
+
+  @override
+  void reset() {
+    _customLocations = [];
   }
 }

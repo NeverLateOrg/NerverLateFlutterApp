@@ -3,8 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:never_late_api_refont/models/customLocation.dart';
 import 'package:never_late_api_refont/services/api_services/api.service.dart';
-
-import 'httpError.dart';
+import 'package:never_late_api_refont/services/api_services/utils/httpError.dart';
 
 class CustomLocationsApiService extends ApiService {
   CustomLocationsApiService._privateConstructor();

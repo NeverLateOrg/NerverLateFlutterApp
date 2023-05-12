@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:never_late_api_refont/widgets/app_large_text.dart';
 import 'package:never_late_api_refont/widgets/app_text.dart';
 
-import '../models/placeLocation.dart';
+import '../../models/placeLocation.dart';
 
 enum PopupMenuChoice { edit, delete }
 
