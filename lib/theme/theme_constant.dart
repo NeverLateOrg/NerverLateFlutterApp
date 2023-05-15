@@ -1,23 +1,16 @@
 import 'package:flutter/material.dart';
 
-// 60% of the app
-const COLOR_NEUTRAL = Color(0xFFf3f3f3);
-// 30% of the app
-const COLOR_PRIMARY = Color(0xffffffff);
-// 10% of the app
-const COLOR_ACTION = Color(0xFF2d2942);
-
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
-  primary: COLOR_PRIMARY,
+  primary: Color(0xFF225FA6),
   onPrimary: Color(0xFFFFFFFF),
   primaryContainer: Color(0xFFD5E3FF),
   onPrimaryContainer: Color(0xFF001C3B),
-  secondary: COLOR_NEUTRAL,
+  secondary: Color(0xFF1860A5),
   onSecondary: Color(0xFFFFFFFF),
   secondaryContainer: Color(0xFFD3E3FF),
   onSecondaryContainer: Color(0xFF001C39),
-  tertiary: COLOR_ACTION,
+  tertiary: Color(0xFFA7391E),
   onTertiary: Color(0xFFFFFFFF),
   tertiaryContainer: Color(0xFFFFDAD2),
   onTertiaryContainer: Color(0xFF3D0700),

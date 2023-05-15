@@ -20,6 +20,8 @@ class HttpError {
     _statusCode = _response.statusCode;
     _body = jsonDecode(_response.body);
     _error = _body['error'];
-    _type = _error['type'];
+    if (_error is Map<String, dynamic>) {
+      _type = _error['type'];
+    }
   }
 }

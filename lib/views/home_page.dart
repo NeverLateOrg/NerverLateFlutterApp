@@ -2,6 +2,7 @@ import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:never_late_api_refont/views/calendar_page/calendar_page.dart';
 import 'package:never_late_api_refont/views/locations_page/locations_page.dart';
+import 'package:never_late_api_refont/views/setting_page/setting_page.dart';
 
 import '../models/event.dart';
 import '../services/data_services/event_service.dart';
@@ -36,7 +37,7 @@ class _HomePageState extends State<HomePage> {
       name: 'Locations',
     ),
     PageItem(
-      page: Container(),
+      page: const SettingPage(),
       icon: Icons.settings_outlined,
       name: 'Settings',
     ),

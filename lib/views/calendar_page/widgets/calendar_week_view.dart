@@ -2,6 +2,9 @@ import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:never_late_api_refont/models/event.dart';
 
+import '../../../main.dart';
+import '../../event_pages/event_details/event_details_page.dart';
+
 class CalendarWeekView extends StatefulWidget {
   const CalendarWeekView({Key? key, required this.militaryHourFormat})
       : super(key: key);
@@ -28,7 +31,8 @@ class _CalendarWeekViewState extends State<CalendarWeekView> {
               date: date,
             ),
       onEventTap: (events, date) {
-        print('Tapped event: $events');
+        navigatorKey.currentState!.push(MaterialPageRoute(
+            builder: (context) => EventDetailsPage(event: events.first)));
       },
     );
   }

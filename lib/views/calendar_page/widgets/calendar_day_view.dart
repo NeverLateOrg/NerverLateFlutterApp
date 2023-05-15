@@ -30,7 +30,6 @@ class _CalendarDayViewState extends State<CalendarDayView> {
               date: date,
             ),
       onEventTap: (events, date) {
-        print('Tapped event: $events');
         navigatorKey.currentState!.push(MaterialPageRoute(
             builder: (context) => EventDetailsPage(event: events.first)));
       },

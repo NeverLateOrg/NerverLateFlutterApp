@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:never_late_api_refont/main.dart';
 import 'package:never_late_api_refont/services/data_services/event_service.dart';
 import 'package:never_late_api_refont/views/calendar_page/widgets/calendar_day_view.dart';
 import 'package:never_late_api_refont/views/calendar_page/widgets/calendar_month_view.dart';
@@ -6,6 +7,7 @@ import 'package:never_late_api_refont/views/calendar_page/widgets/calendar_week_
 
 import '../../widgets/app_large_text.dart';
 import '../../widgets/expandable_button.dart';
+import '../event_pages/event_create/event_create_page.dart';
 
 class CalendarPage extends StatefulWidget {
   const CalendarPage({Key? key}) : super(key: key);
@@ -17,6 +19,13 @@ class CalendarPage extends StatefulWidget {
 class _CalendarPageState extends State<CalendarPage> {
   int _selectedIndex = 0;
   final List<bool> _selectedViews = <bool>[true, false, false];
+
+  @override
+  void initState() {
+    super.initState();
+
+    EventService().syncRemoteAll();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,18 +46,6 @@ class _CalendarPageState extends State<CalendarPage> {
             text: 'Calendar',
             color: theme.colorScheme.primary,
           ),
-          actions: [
-            RawMaterialButton(
-              onPressed: () {
-                // Refresh
-                EventService().syncRemoteAll();
-              },
-              child: Icon(
-                color: theme.colorScheme.primary,
-                Icons.refresh,
-              ),
-            ),
-          ],
         ),
         floatingActionButton: Wrap(
           direction: Axis.horizontal,
@@ -83,7 +80,8 @@ class _CalendarPageState extends State<CalendarPage> {
                 child: const Icon(Icons.add),
                 onPressed: () => {
                   // Add event
-                  print('Add event'),
+                  navigatorKey.currentState!.push(MaterialPageRoute(
+                      builder: (context) => const EventCreatePage()))
                 },
               ),
             ),

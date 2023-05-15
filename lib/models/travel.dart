@@ -20,6 +20,28 @@ class Travel {
   CalendarEventData<Event> get fromEvent => EventService().getOne(fromEventId)!;
   CalendarEventData<Event> get toEvent => EventService().getOne(toEventId)!;
 
+  @override
+  bool operator ==(Object other) {
+    if (other is! Travel) {
+      return false;
+    }
+    return other.fromEventId == fromEventId &&
+        other.toEventId == toEventId &&
+        other.duration == duration &&
+        other.departureDate == departureDate;
+  }
+
+  @override
+  int get hashCode {
+    const prime = 31;
+    var result = 1;
+    result = prime * result + fromEventId.hashCode;
+    result = prime * result + toEventId.hashCode;
+    result = prime * result + duration.hashCode;
+    result = prime * result + departureDate.hashCode;
+    return result;
+  }
+
   factory Travel.make(String toEventId, Map<String, dynamic> json) {
     return Travel(
       toEventId: toEventId,

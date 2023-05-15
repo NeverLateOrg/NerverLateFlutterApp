@@ -1,6 +1,7 @@
 import 'package:calendar_view/calendar_view.dart';
 import 'package:never_late_api_refont/extensions/event_controller_ext.dart';
 import 'package:never_late_api_refont/models/event.dart';
+import 'package:never_late_api_refont/services/api_services/dtos/events/CreateEventDTO.dart';
 import 'package:never_late_api_refont/services/api_services/events_api_service.dart';
 import 'package:never_late_api_refont/services/data_services/list_data_service.dart';
 
@@ -49,6 +50,23 @@ class EventService implements ListDataService<CalendarEventData<Event>> {
   @override
   int getIndex(String id) {
     return _controller.getIndex(id);
+  }
+
+  Future<Event> createEvent(CreateEventDTO dto) async {
+    if (dto.isValid() == false) {
+      throw Exception("Invalid event");
+    }
+    final createdEvent = await _apiService.postEvent(dto);
+    _controller.addOrUpdate(createdEvent.toCalendarEventData());
+    return createdEvent;
+  }
+
+  Future<void> deleteEvent(String id) async {
+    await _apiService.deleteEvent(id);
+    final event = getOne(id);
+    if (event != null) {
+      _controller.remove(event);
+    }
   }
 
   @override
